@@ -23,12 +23,12 @@ def analyze(request):
                 analyzed =analyzed + char
         params={'purpose':'Remove Punctuations', 'analyzed_text': analyzed}
         dtext = analyzed
-    if (upper == 'on'):
+    if upper == 'on':
         analyzed = dtext.upper()
         params = {'purpose': 'Changed to uppercase', 'analyzed_text': analyzed}
         dtext = analyzed
 
-    if (extraspaceremover == 'on'):
+    if extraspaceremover == 'on':
         analyzed=""
         for index,char in enumerate(dtext):
             if not(dtext[index] == " " and dtext[index+1]==" "):
@@ -36,7 +36,7 @@ def analyze(request):
         params = {'purpose': 'Extra space remover', 'analyzed_text': analyzed}
         dtext = analyzed
 
-    if (newlineremover == 'on'):
+    if newlineremover == 'on':
         analyzed=""
         for char in dtext:
             if char != '\n' and char != '\r':
@@ -44,11 +44,11 @@ def analyze(request):
         params = {'purpose': 'New line remover', 'analyzed_text': analyzed}
         dtext=analyzed
 
-    if (charcount == 'on'):
+    if charcount == 'on':
         analyzed= len(dtext)
         params = {'purpose': 'Character count', 'analyzed_text': analyzed}
 
-    if (removepunc!='on' and upper!='on' and extraspaceremover!='on' and newlineremover!='on' and charcount!='on'):
+    if removepunc!='on' and upper!='on' and extraspaceremover!='on' and newlineremover!='on' and charcount!='on':
         return HttpResponse("Please select atleast one option and try again")
 
     return render(request, 'analyze.html', params)
